@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Photo Gallery</title>
+    <style>
+        #image {
+            width: 500px;
+            height: 300px;
+            background-color: lightgray;
+            text-align: center;
+            line-height: 300px;
+            font-size: 20px;
+            color: black;
+            margin-bottom: 20px;
+        }
+
+        .gallery img {
+            width: 200px;
+            height: 120px;
+            margin: 10px;
+            border: 2px solid #ccc;
+            cursor: pointer;
+        }
+
+        .gallery img:hover {
+            border-color: #007BFF;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Interactive Photo Gallery</h2>
+
+    <div id="image">
+        Hover over an image below to display it here.
+    </div>
+
+    <div class="gallery">
+        <img src="https://via.placeholder.com/200x120/FF6347/FFFFFF?text=Image+1" alt="Image 1" onclick="upDate(this)">
+        <img src="https://via.placeholder.com/200x120/4682B4/FFFFFF?text=Image+2" alt="Image 2" onclick="upDate(this)">
+        <img src="https://via.placeholder.com/200x120/32CD32/FFFFFF?text=Image+3" alt="Image 3" onclick="upDate(this)">
+        <img src="https://via.placeholder.com/200x120/FFD700/FFFFFF?text=Image+4" alt="Image 4" onclick="upDate(this)">
+    </div>
+
+    <script>
+        // Function to update the image and the background
+        function upDate(pic) {
+            console.log('Image clicked: ', pic.src); // For debugging, log the image source
+            var previewPic = document.getElementById("image");
+            previewPic.innerHTML = pic.alt;  // Update text with alt of the image
+            previewPic.style.backgroundImage = "url('" + pic.src + "')"; // Update background with the image
+        }
+
+        // Function to reset the image and the background
+        function unDo() {
+            var previewPic = document.getElementById("image");
+            previewPic.innerHTML = "Hover over an image below to display it here."; // Reset text
+            previewPic.style.backgroundImage = "url('')"; // Reset background
+        }
+
+        // Adding event listeners for mouse hover effects
+        var images = document.querySelectorAll('.gallery img');
+        images.forEach(function(img) {
+            img.addEventListener('mouseover', function() {
+                console.log('Mouse over image: ', img.src); // Log mouse over event
+            });
+
+            img.addEventListener('mouseout', function() {
+                console.log('Mouse out of image'); // Log mouse out event
+            });
+        });
+    </script>
+
+</body>
+</html>
